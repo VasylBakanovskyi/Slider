@@ -1,22 +1,19 @@
-var slider = document.querySelectorAll('.slider');
-var next = document.querySelectorAll('.next');
-var prev = document.querySelectorAll('.prev');
-var iconBlocks = document.querySelectorAll('.icon-block'); 
+const slider = document.querySelectorAll('.slider');
 
 for (var n = 0; n < slider.length; n++) {
 	createIconBlock(slider[n]);
 
 	slider[n].addEventListener('click', function(e) {
-		var el = e.target;
-		var parentSlider = el.closest('.slider');
-		var icons = parentSlider.querySelectorAll('.icon');
-		var slides = parentSlider.querySelectorAll('.slide');
-		var activeSlide = parentSlider.querySelector('.active');
-		var currentSlide;
+		const el = e.target;
+		const parentSlider = el.closest('.slider');
+		const icons = parentSlider.querySelectorAll('.icon');
+		const slides = parentSlider.querySelectorAll('.slide');
+		const activeSlide = parentSlider.querySelector('.active');
+		let currentSlide;
 
 		if (el.classList.contains('next')) {
 			
-			for (var i = 0; i < slides.length; i++) {
+			for (let i = 0; i < slides.length; i++) {
 				if (slides[i].classList.contains('active')) {
 					currentSlide = i;
 				}
@@ -36,7 +33,7 @@ for (var n = 0; n < slider.length; n++) {
 		}
 		if (el.classList.contains('prev')) {
 			
-			for (var i = 0; i < slides.length; i++) {
+			for (let i = 0; i < slides.length; i++) {
 				if (slides[i].classList.contains('active')) {
 					currentSlide = i;
 				}
@@ -71,7 +68,7 @@ for (var n = 0; n < slider.length; n++) {
 			}
 		}
 		if (el.classList.contains('icon')) {
-			var order = el.getAttribute('data-order');
+			const order = el.getAttribute('data-order');
 
 			icons.forEach( item => item.classList.remove('icon-active'));
 			el.classList.add('icon-active');
@@ -82,12 +79,12 @@ for (var n = 0; n < slider.length; n++) {
 	})
 }
 
-
 function createIconBlock(num) {
-	var slides = num.querySelectorAll('.slide');
+	const slides = num.querySelectorAll('.slide');
 
 	for (let i = 0; i < slides.length; i++) {
-		var iconImg = document.createElement('img');
+		const iconImg = document.createElement('img');
+
 		if (i === 0) {
 			iconImg.classList.add('icon-active');
 		}
@@ -98,6 +95,6 @@ function createIconBlock(num) {
 		iconImg.style.width = (parseInt(slides[0].width) / slides.length) + 'px';
 		iconImg.style.height = (parseInt(slides[0].height) / slides.length) + 'px';
 
-		document.querySelectorAll('.icon-block')[n].appendChild(iconImg);
+		num.querySelector('.icon-block').appendChild(iconImg);
 	}
 };
